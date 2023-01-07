@@ -28,14 +28,35 @@ const resolvers = {
     },
   },
   User: {
-    // friends() {
-    //   return _.filter(UserList, (user) => user.name)
-    // },
     favoriteMovies() {
       return _.filter(
         MovieList,
         (movie) => movie.year >= 2000 && movie.year <= 2015
       )
+    },
+  },
+  Mutation: {
+    createUser(parent, args) {
+      const user = args.input
+      const lastId = UserList[UserList.length - 1].id
+      user.id = lastId + 1
+      UserList.push(user)
+      console.log(user)
+      return user
+    },
+    updateUser(parent, args) {
+      const { id, name, username, nationality } = args.input
+      let updatedUser
+      UserList.forEach((user) => {
+        if (user.id === Number(id)) {
+          user.name = name
+          user.username = username
+          user.nationality = nationality
+          updatedUser = user
+        }
+      })
+      console.log(updatedUser)
+      return updatedUser
     },
   },
 }
