@@ -39,7 +39,7 @@ const typeDefs = gql`
     nationality: String!
   }
 
-  // almost like the routes of a REST api
+  // defining the type of return whenever that resolver is queried
   type Query {
     users: [User!]
     // when querying users if it returns an array, each element must be of type User
@@ -70,7 +70,8 @@ const { UserList } = require("../data")
 const resolvers = {
   // Create Query object
   Query: {
-    // Create method on Query Object -- define what it will do/return when called
+    // Create method on Query Object -- define what it will do/return when called 
+    // basically routes found in REST api's
     users() {
       return UserList
     },
