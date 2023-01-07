@@ -38,6 +38,28 @@ const UserList = [
   },
 ]
 
+const MovieList = [
+  {
+    id:  1,
+    name: 'Interstellar',
+    year: '2018',
+    inTheaters: false
+  },
+  {
+    id:  2,
+    name: 'Avengers',
+    year: '2016',
+    inTheaters: false
+  },
+  {
+    id:  3,
+    name: 'Shrek',
+    year: '2007',
+    inTheaters: true
+  },
+]
+
 module.exports = {
   UserList,
+  MovieList,
 }
