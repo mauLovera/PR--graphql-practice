@@ -7,17 +7,17 @@ const UserList = [
     nationality: "US",
   },
   {
-    id: 1,
+    id: 2,
     name: "Joan",
     username: `Joan123`,
-    age: 18,
+    age: 38,
     nationality: "US",
   },
   {
-    id: 1,
+    id: 3,
     name: "John",
     username: `John123`,
-    age: 18,
+    age: 44,
     nationality: "US",
   },
 ]
