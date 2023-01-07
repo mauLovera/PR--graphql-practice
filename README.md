@@ -70,7 +70,7 @@ const { UserList } = require("../data")
 const resolvers = {
   // Create Query object
   Query: {
-    // Create method on Query Object -- define what it will do/return when called 
+    // Create method on Query Object -- define what it will do/return when called
     // basically routes found in REST api's
     users() {
       return UserList
@@ -159,7 +159,7 @@ user(parent, args) {
 }
 ```
 
-5. Using `lodash` (import * as _ from 'lodash' / const _ = require('lodash')) to traverse the local data, write a query to find a `User` from `UserList` who's ID matches the one found on `args.id`
+5. Using `lodash` (import \* as _ from 'lodash' / const _ = require('lodash')) to traverse the local data, write a query to find a `User` from `UserList` who's ID matches the one found on `args.id`
 
 ```
 user(parent, args) {
@@ -169,6 +169,7 @@ user(parent, args) {
   })
 }
 ```
+
 6. `return` the found user
 
 ```
@@ -181,6 +182,40 @@ user(parent, args) {
 },
 ```
 
+## Setting up resolver for type
+
+1. Within `resolvers` object in `schema/resolvers.js`, define a new object that matches a type found in `schema/typeDefs.js`.
+
+```
+// schema/typeDef.js
+const typeDefs = gql`
+  type User {
+    id: ID
+    name: String!
+    username: String!
+    age: Int!
+    nationality: Nationality!
+    friends: [User]
+    favoriteMovies: [Movie]
+  }
+...
+}
+```
+
+```
+// schema/resolvers.js
+User: {
+    favoriteMovies() {
+      return _.filter(
+        MovieList,
+        (movie) => movie.year >= 2000 && movie.year <= 2015
+      )
+    },
+  },
+```
+
+2. Add a method to the new resolver that matches a field found within the `typeDef` -- then whenever favoriteMovies is queried on a user -- method will be called and return the value within it. 
+  
 ---
 
 ## Removing existing node process
@@ -277,13 +312,19 @@ module.exports = {
 #   }
 # }›
 
-# query GetUser($userId: ID!) {
-#   user(id: $userId) {
-#     name
-#     age 
-#     nationality
-#   }
-# }
+query GetUser($userId: ID!) {
+  user(id: $userId) {
+    name
+    age 
+    nationality
+    favoriteMovies {
+      name
+    }
+    friends {
+      name
+    }
+  }
+}
 
 # query GetMovies {
 #   movies {
