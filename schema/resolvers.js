@@ -22,10 +22,21 @@ const resolvers = {
     movie(parent, args) {
       const name = args.name
       const movie = _.find(MovieList, {
-        name
+        name,
       })
       return movie
-    }
+    },
+  },
+  User: {
+    // friends() {
+    //   return _.filter(UserList, (user) => user.name)
+    // },
+    favoriteMovies() {
+      return _.filter(
+        MovieList,
+        (movie) => movie.year >= 2000 && movie.year <= 2015
+      )
+    },
   },
 }
 

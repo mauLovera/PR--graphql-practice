@@ -8,6 +8,7 @@ const typeDefs = gql`
     age: Int!
     nationality: Nationality!
     friends: [User]
+    favoriteMovies: [Movie]
   }
 
   type Movie {
