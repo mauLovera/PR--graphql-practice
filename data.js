@@ -11,14 +11,14 @@ const UserList = [
     name: "Joan",
     username: `Joan123`,
     age: 38,
-    nationality: "US",
+    nationality: "GERMANY",
   },
   {
     id: 3,
     name: "John",
     username: `John123`,
     age: 44,
-    nationality: "US",
+    nationality: "SPAIN",
   },
 ]
 

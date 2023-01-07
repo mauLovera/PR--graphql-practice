@@ -89,7 +89,8 @@ module.exports = { resolvers }
 1. Start server -- `nodemon server.js` in console
    1. or add `"start": 'nodemon server.js'` to npm scripts and run `npm start`
 2. Access URL endpoint provided by `server.listen()` on browser.
-3. In `Operations` section of apollo studio write query: 
+3. In `Operations` section of apollo studio write query:
+
 ```
 // Name the query
 query GetAllUsers {
@@ -102,7 +103,7 @@ query GetAllUsers {
     age
     nationality
   }
-} 
+}
 
 /* return
 {
@@ -136,6 +137,12 @@ query GetAllUsers {
 ```
 
 ---
+
+## Removing existing node process
+
+1. `lsof -i tcp:4000` or `lsof -i tcp:{portNumber}`
+2. Look for process that command = node and copy PID
+3. `kill -9 {PID}`
 
 ## Local Data
 

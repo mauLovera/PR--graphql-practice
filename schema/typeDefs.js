@@ -12,6 +12,12 @@ const typeDefs = gql`
   type Query {
     users: [User!]
   }
+
+  enum Nationality {
+    US
+    GERMANY
+    SPAIN
+  }
 `
 
 module.exports = {
