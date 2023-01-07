@@ -198,24 +198,107 @@ const UserList = [
     username: `Mark123`,
     age: 18,
     nationality: "US",
+    friends: [
+      {
+        id: 2,
+        name: "Joan",
+        username: `Joan123`,
+        age: 38,
+        nationality: "GERMANY",
+      },
+      {
+        id: 3,
+        name: "John",
+        username: `John123`,
+        age: 44,
+        nationality: "SPAIN",
+      },
+    ],
   },
   {
     id: 2,
     name: "Joan",
     username: `Joan123`,
     age: 38,
-    nationality: "US",
+    nationality: "GERMANY",
   },
   {
     id: 3,
     name: "John",
     username: `John123`,
     age: 44,
-    nationality: "US",
+    nationality: "SPAIN",
+  },
+]
+
+const MovieList = [
+  {
+    id:  1,
+    name: 'Interstellar',
+    year: '2018',
+    inTheaters: false
+  },
+  {
+    id:  2,
+    name: 'Avengers',
+    year: '2016',
+    inTheaters: false
+  },
+  {
+    id:  3,
+    name: 'Shrek',
+    year: '2007',
+    inTheaters: true
   },
 ]
 
 module.exports = {
-  UserList
+  UserList,
+  MovieList,
+}
+
+```
+
+## Operation Queries
+
+```
+# query GetUsers {
+#   users {
+#     id
+#     name
+#     username
+#     age
+#     nationality
+#     friends {
+#       name
+#       age
+#     }
+#   }
+# }›
+
+# query GetUser($userId: ID!) {
+#   user(id: $userId) {
+#     name
+#     age 
+#     nationality
+#   }
+# }
+
+# query GetMovies {
+#   movies {
+#     id
+#     name
+#     year
+#     inTheaters
+#   }
+# }
+
+query GetMovie($name: String!) {
+  movie(name: $name) {
+    id
+    name
+    year
+    inTheaters
+  }
 }
 ```
