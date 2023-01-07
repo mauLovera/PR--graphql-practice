@@ -138,7 +138,7 @@ query GetAllUsers {
 
 ## Setting up route with arguments
 
-1. In `schema/typeDef.js`, add a `user` property to `Query` type
+1. In `schema/typeDefs.js`, add a `user` property to `Query` type
 
 ```
   type Query {
