@@ -216,6 +216,84 @@ User: {
 
 2. Add a method to the new resolver that matches a field found within the `typeDef` -- then whenever favoriteMovies is queried on a user -- method will be called and return the value within it. 
   
+
+## Create User
+
+1. In `schema/typeDef.js`, add a `type Mutation` to the `typeDefs` object. 
+2. Within the `type Mutation` add a `createUser` method that returns a `User`
+```
+type Mutation {
+  createUser(): User!
+}
+```
+3. Create an `input` of `CreateUserInput` and add the fields that you want to have when you create a `User`
+```
+input CreateUserInput {
+    name: String!
+    username: String!
+    age: Int!
+    nationality: Nationality = US
+}
+```
+4. Return to the `type Mutation` and add `input` as an argument with `input` having a type of `CreateUserInput`
+```
+createUser(input: CreateUserInput!): User!
+```
+5. In `schema/resolvers.js`, add a `Mutation` property to the `resolvers` object.
+6. Add the `createUser()` method to the `Mutation` object and add two arguments `createUser(parent, args)`
+```
+createUser(parent, args) {}
+```
+7. To create a user we will assign the fields that were inputted in the front end to a user variable.
+```
+createUser(parent, args) {
+  const user = args.input // => name: 'john', username: 'john123', etc.
+}
+```
+8. Then create a variable to find the last used id and store it.
+```
+createUser(parent, args) {
+  const user = args.input // => name: 'john', username: 'john123', etc.
+  const lastId = UserList[UserList.length - 1].id
+}
+```
+9. Then add the `id` property to the `user` object 
+```
+createUser(parent, args) {
+  const user = args.input // => name: 'john', username: 'john123', etc.
+  const lastId = UserList[UserList.length - 1].id
+  user.id = lastId + 1
+}
+```
+9. Finally push the `user` on to `UserList` and return the `user`
+```
+createUser(parent, args) {
+  const user = args.input // => name: 'john', username: 'john123', etc.
+  const lastId = UserList[UserList.length - 1].id
+  user.id = lastId + 1
+  UserList.push(user)
+  return user
+}
+```
+10. Example query: 
+```
+mutation CreateUser($input: CreateUserInput!) {
+  createUser(input: $input) {
+    id
+    name
+    age
+  }
+}
+
+// input field
+{
+  "input": {
+    "name": "Elliot",
+    "username": "eell123",
+    "nationality": "US"
+  }
+}
+```
 ---
 
 ## Removing existing node process
