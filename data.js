@@ -5,6 +5,22 @@ const UserList = [
     username: `Mark123`,
     age: 18,
     nationality: "US",
+    friends: [
+      {
+        id: 2,
+        name: "Joan",
+        username: `Joan123`,
+        age: 38,
+        nationality: "GERMANY",
+      },
+      {
+        id: 3,
+        name: "John",
+        username: `John123`,
+        age: 44,
+        nationality: "SPAIN",
+      },
+    ],
   },
   {
     id: 2,
@@ -23,5 +39,5 @@ const UserList = [
 ]
 
 module.exports = {
-  UserList
+  UserList,
 }
