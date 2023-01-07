@@ -28,6 +28,7 @@ const UserList = [
     username: `Joan123`,
     age: 38,
     nationality: "GERMANY",
+    friends: null
   },
   {
     id: 3,
@@ -35,6 +36,7 @@ const UserList = [
     username: `John123`,
     age: 44,
     nationality: "SPAIN",
+    friends: null
   },
 ]
 
