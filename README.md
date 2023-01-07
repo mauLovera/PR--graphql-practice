@@ -136,12 +136,56 @@ query GetAllUsers {
 */
 ```
 
+## Setting up route with arguments
+
+1. In `schema/typeDef.js`, add a `user` property to `Query` type
+
+```
+  type Query {
+    users: [User!]
+    user(id: ID!): User
+    // the id passed must be of type ID
+  }
+```
+
+2. In `schema/resolvers.js`, add a `user()` method to `Query` object.
+3. Use `args` -- the second parameter in a GraphQL Query method
+4. In this case we are finding the id which will be passed by the front end when querying this route
+
+```
+user(parent, args) {
+  const id = args.id
+}
+```
+
+5. Using `lodash` (import * as _ from 'lodash' / const _ = require('lodash')) to traverse the local data, write a query to find a `User` from `UserList` who's ID matches the one found on `args.id`
+
+```
+user(parent, args) {
+  const id = args.id
+  const user = _.find(UserList, {
+    id: Number(id),
+  })
+}
+```
+6. `return` the found user
+
+```
+user(parent, args) {
+  const id = args.id
+  const user = _.find(UserList, {
+    id: Number(id),
+  })
+  return user
+},
+```
+
 ---
 
 ## Removing existing node process
 
-1. `lsof -i tcp:4000` or `lsof -i tcp:{portNumber}`
-2. Look for process that command = node and copy PID
+1. `lsof -i tcp:{portNumber}`
+2. Look for process that has command = node and copy PID
 3. `kill -9 {PID}`
 
 ## Local Data
