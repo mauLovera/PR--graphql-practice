@@ -84,7 +84,59 @@ const resolvers = {
 module.exports = { resolvers }
 ```
 
---- 
+## Querying in GraphQL
+
+1. Start server -- `nodemon server.js` in console
+   1. or add `"start": 'nodemon server.js'` to npm scripts and run `npm start`
+2. Access URL endpoint provided by `server.listen()` on browser.
+3. In `Operations` section of apollo studio write query: 
+```
+// Name the query
+query GetAllUsers {
+  // users is a resolver route
+  users {
+    // we want to return the following fields:
+    id
+    name
+    username
+    age
+    nationality
+  }
+} 
+
+/* return
+{
+  "data": {
+    "users": [
+      {
+        "id": "1",
+        "name": "Mark",
+        "username": "Mark123",
+        "age": 18,
+        "nationality": "US"
+      },
+      {
+        "id": "2",
+        "name": "Joan",
+        "username": "Joan123",
+        "age": 38,
+        "nationality": "US"
+      },
+      {
+        "id": "3",
+        "name": "John",
+        "username": "John123",
+        "age": 44,
+        "nationality": "US"
+      }
+    ]
+  }
+}
+*/
+```
+
+---
+
 ## Local Data
 
 ```
