@@ -1,5 +1,5 @@
-const { UserList, MovieList } = require("../data")
-const _ = require("lodash")
+const { UserList, MovieList } = require('../data')
+const _ = require('lodash')
 
 const resolvers = {
   Query: {
@@ -57,6 +57,17 @@ const resolvers = {
       })
       console.log(updatedUser)
       return updatedUser
+    },
+    deleteUser(parent, args) {
+      const { id } = args.input
+      let deletedUser
+      UserList.forEach(user => {
+        if (user.id === Number(id)) {
+          deletedUser = user
+          UserList.splice(UserList.indexOf(user), 1)
+        }
+      })
+      return deletedUser
     },
   },
 }
